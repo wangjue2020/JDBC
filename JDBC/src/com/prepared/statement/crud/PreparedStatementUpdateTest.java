@@ -11,13 +11,70 @@ import java.util.Properties;
 
 import org.junit.Test;
 
+import com.util.JDBCutils;
+
 /*
  * 使用PreparedStatement来替代Statement， 实现对数据表的增删改查操作
  * 
  * 增删改，查
  */
 public class PreparedStatementUpdateTest {
-
+	//
+	//通用的增删改操作
+	//sql中占位符的个数与可变形参的个数一致
+	public void generalUpdate(String sql, Object ...args){
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try{
+			//1、获取数据库的连接
+			connection = JDBCutils.getConnection();
+			//2、预编译sql语句，返回preparedStatement实例
+			preparedStatement = connection.prepareStatement(sql);
+			//3、填充占位符
+			for(int i = 1; i <= args.length; i++){
+				preparedStatement.setObject(i, args[i-1]);
+			}
+			//4、执行
+			preparedStatement.execute();
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			//5、资源的关闭
+			JDBCutils.closeResource(connection, preparedStatement);
+		}
+	}
+	@Test
+	public void generalUpdateTest(){
+//		String sql = "delete from customers where id = ?;";
+//		generalUpdate(sql,12);
+		
+		String sql = "update test.order set order_name=? where order_id=?;";
+		generalUpdate(sql, "DD", 2);
+		
+	}
+	//修改customers 表的一条记录
+	@Test
+	public void updateTest() {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try{
+			//	1、获取数据库的连接
+			connection = JDBCutils.getConnection();
+			//2、预编译sql语句，返回preparedStatement实例
+			String sql = "UPDATE customers SET name = ? WHERE id = ?;";
+			preparedStatement = connection.prepareStatement(sql);
+			//3、填充占位符
+			preparedStatement.setString(1, "莫扎特");
+			preparedStatement.setInt(2, 18);
+			//4、执行
+			preparedStatement.execute();
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			//5、资源的关闭
+			JDBCutils.closeResource(connection, preparedStatement);
+		}
+	}
 	// 向customers表中添加一条记录
 	@Test
 	public void insertTest() {
