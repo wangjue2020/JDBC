@@ -13,6 +13,13 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
+/**
+ * 除了解决Statement的拼串问题、sql问题之外，PreparedStatement还有哪些好处？
+ * 1、PreparedStatement操作Blob数据，而Statement做不到
+ * 2、PreparedStatement可以实现更高效的批量操作（只需要检验一次给预编译，之后只需要传值）
+ * @author Wangjue
+ *
+ */
 public class StatementTest {
 
 	// 使用Statement的弊端：需要拼写sql语句，并且存在SQL注入的问题
