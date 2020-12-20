@@ -10,3 +10,5 @@ Database connection pool
   -> dbcp needs commons-dbcp-1.4.jar, commons-pool-1.5.5.jar
   
   -> Druid needs druid-1.1.10.jar
+  
+Apache Query Runner & DbUtils needs commons-dbutils-1.3.jar
