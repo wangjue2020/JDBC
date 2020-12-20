@@ -18,7 +18,7 @@ public class CustomerDAOTest {
 	public void testInsert() {
 		Connection connection = null;
 		try {
-			connection = JDBCutils.getConnection();
+			connection = JDBCutils.getConnectionC3P0();
 			Customer customer = new Customer(1, "Jenny", "Jenny@gmail.com", new Date(43534646435L));
 			dao.insert(connection, customer);
 			System.out.println("添加成功");
@@ -85,7 +85,7 @@ public class CustomerDAOTest {
 		System.out.println("===============testGetALL(Start)==================");
 		Connection connection = null;
 		try {
-			connection = JDBCutils.getConnection();
+			connection = JDBCutils.getConnectionDBCP();
 			List<Customer> customers = dao.getALL(connection);
 			for ( Customer c: customers){
 				System.out.println(c);

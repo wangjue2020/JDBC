@@ -2,10 +2,12 @@ package com.connection;
 
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import org.junit.Test;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.mchange.v2.c3p0.DataSources;
 
 public class C3P0Test {
 	//方式一
@@ -23,7 +25,15 @@ public class C3P0Test {
 		
 		Connection connection = cpds.getConnection();
 		System.out.println(connection);
+		
+		//销毁c3p0数据库连接池
+//		DataSources.destroy(cpds);
 	}
 	//方式二： 使用配置文件
-	
+	@Test
+	public void testGetConnection1() throws SQLException{
+		ComboPooledDataSource cpds = new ComboPooledDataSource("helloc3p0");  
+		Connection connection = cpds.getConnection();
+		System.out.println(connection);
+	}
 }
