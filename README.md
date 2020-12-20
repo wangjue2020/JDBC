@@ -6,4 +6,5 @@ build path with the *.jar in lib directory (right click -> build path -> configu
 Database connection pool 
   
   -> C3P0 needs c3p0-0.9.1.2.jar
+  
   -> dbcp needs commons-dbcp-1.4.jar, commons-pool-1.5.5.jar
