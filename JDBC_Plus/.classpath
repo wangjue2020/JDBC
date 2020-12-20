@@ -7,6 +7,7 @@
 	<classpathentry kind="lib" path="lib/commons-dbcp-1.4.jar" sourcepath="/Users/Wangjue/Desktop/Java/JDBC/3-资料/3-资料/2-驱动/03-数据库连接池驱动/commons-dbcp-1.4-src.zip"/>
 	<classpathentry kind="lib" path="lib/commons-pool-1.5.5.jar"/>
 	<classpathentry kind="lib" path="lib/druid-1.1.10.jar"/>
+	<classpathentry kind="lib" path="lib/commons-dbutils-1.3.jar" sourcepath="/Users/Wangjue/Desktop/Java/JDBC/3-资料/3-资料/2-驱动/04-dbutils/commons-dbutils-1.3-src.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -15,6 +15,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSourceFactory;
+import org.apache.commons.dbutils.DbUtils;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
@@ -82,7 +83,7 @@ public class JDBCutils {
 			e.printStackTrace();
 		}
 	}
-	public static Connection getConnectionDBCP() throws Exception{
+	public static Connection getConnectionDBCP() throws SQLException {
 		
 		Connection connection = source.getConnection();
 		return connection;
@@ -106,7 +107,7 @@ public class JDBCutils {
 	
 		
 	}
-	public static Connection getConnectionDruid() throws Exception{
+	public static Connection getConnectionDruid() throws SQLException{
 		Connection connection = sourceDruid.getConnection();
 		return connection;
 	}
@@ -159,5 +160,22 @@ public class JDBCutils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	/**
+	 * @Description 使用dbutils.jar 中提供的DbUtils工具类，实现资源的关闭
+	 * @param connection
+	 * @param s
+	 */
+	public static void closeResourceDbUtils(Connection connection, Statement s, ResultSet rs){
+		//方式一：
+//		try {
+//			DbUtils.close(connection);
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		DbUtils.closeQuietly(connection);
+		DbUtils.closeQuietly(rs);
+		DbUtils.closeQuietly(s);
 	}
 }
