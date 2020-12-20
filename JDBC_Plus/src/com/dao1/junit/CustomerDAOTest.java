@@ -121,7 +121,7 @@ public class CustomerDAOTest {
 		System.out.println("===============testGetMaxBirth(Start)==================");
 		Connection conn = null;
 		try {
-			conn = JDBCutils.getConnection();
+			conn = JDBCutils.getConnectionDruid();
 			Date maxBirth = dao.getMaxBirth(conn);
 			System.out.println(maxBirth);
 		} catch (Exception e) {

@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSourceFactory;
 
+import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
@@ -84,6 +85,29 @@ public class JDBCutils {
 	public static Connection getConnectionDBCP() throws Exception{
 		
 		Connection connection = source.getConnection();
+		return connection;
+	}
+	
+	private static DataSource sourceDruid;
+	static{
+		try {
+			Properties properties = new Properties();
+			
+			InputStream resourceAsStream = ClassLoader.getSystemClassLoader().getResourceAsStream("druid.properties");
+			properties.load(resourceAsStream);
+			sourceDruid = DruidDataSourceFactory.createDataSource(properties);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+	}
+	public static Connection getConnectionDruid() throws Exception{
+		Connection connection = sourceDruid.getConnection();
 		return connection;
 	}
 	
